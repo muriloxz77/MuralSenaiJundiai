@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    {% block head %}
+    <link rel="stylesheet" href="../static/css/navStyle.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
+        rel="stylesheet">
+    {% endblock %}
+</head>
+
+<body class="light-theme">
+    {% include 'nav.html' %}
+    {% block body %}
+    {% endblock %}
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="../static/js/script.js"></script>
+</body>
+
+</html>
+
+
+<style>
+    /* Variáveis de tema */
+    :root {
+        --background-image: url('../static/img/Plano\ de\ Fundo\ Web\ -\ Claro\ -\ Mural.png');
+        --text-color: #000;
+        --button-text: #000000;
+        --navbar-background: #ffffff;
+        /* Cor de fundo da navbar (claro) */
+        --text-color: #000;
+        /* Cor do texto geral (claro) */
+        --link-color: #000;
+        /* Cor do link de login (claro) */
+        --icon-color: #000;
+        /* Cor do ícone (claro) */
+        --h1-color: #000;
+        /* Cor do h1 (claro) */
+        --link-color: #000000;
+        /* Cor do link (claro) */
+        --label-color: #000;
+        /* Cor das labels (claro) */
+        --button-background: #eee;
+        /* Cor de fundo do botão (claro) */
+        --button-color: black;
+        /* Cor do texto do botão (claro) */
+    }
+
+    /* Tema escuro */
+    .dark-theme {
+        --background-image: url('../static/img/Plano\ de\ Fundo\ Web\ -\ Escuro.png');
+        --text-color: #f1f1f1;
+        --button-text: #ffffff;
+        --navbar-background: #000000;
+        /* Cor de fundo da navbar (escuro) */
+        --text-color: #f1f1f1;
+        /* Cor do texto geral (escuro) */
+        --link-color: #f1f1f1;
+        /* Cor do link de login (escuro) */
+        --icon-color: #f1f1f1;
+        /* Cor do ícone (escuro) */
+        --h1-color: #f1f1f1;
+        /* Cor do h1 (escuro) */
+        --link-color: #ffffff;
+        --label-color: #f1f1f1;
+        --button-background: #333;
+        /* Cor de fundo do botão (escuro) */
+        --button-color: #f1f1f1;
+        /* Cor do texto do botão (escuro) */
+    }
+
+    body {
+        background-image: var(--background-image);
+        background-size: cover;
+        /* height: 100vh; */
+        background-attachment: fixed; /* Mantém o background fixo */
+        background-position: center; /* Centraliza o background */
+        background-repeat: no-repeat;
+        color: var(--text-color);
+        transition: background-color 0.3s ease, color 0.3s ease, background-image 0.3s ease;
+    }
+
+    label {
+        color: var(--label-color);
+        transition: color 0.3s ease;
+    }
+
+
+    .IconButton-homepage {
+        text-decoration: none;
+        color: var(--text-color);
+        transition: color 0.3s ease, transform 0.3s ease;
+        cursor: pointer;
+    }
+
+    .IconButton-homepage:hover {
+        color: #781010;
+        transform: scale(1.1);
+    }
+
+    button {
+        color: var(--button-text);
+        border: none;
+        padding: 10px 20px;
+        cursor: pointer;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    button:hover {
+        opacity: 0.8;
+    }
+
+    nav.navbar {
+        background-color: var(--navbar-background);
+        transition: background-color 0.3s ease;
+
+    }
+
+    a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    a:hover {
+        color: #781010;
+    }
+
+    h1 {
+        color: var(--h1-color);
+        transition: color 0.3s ease;
+    }
+
+
+    .person p {
+        color: var(--text-color);
+    }
+
+    .person a {
+        color: var(--link-color);
+        text-decoration: none;
+        transition: color 0.3s ease;
+    }
+
+    .person a:hover {
+        color: #781010;
+    }
+
+    .person i {
+        color: var(--icon-color);
+        transition: color 0.3s ease;
+    }
+
+    .navbar-nav {
+        padding: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .button-1,
+    .button-2 {
+        background-color: var(--button-background);
+        /* Cor de fundo */
+        color: var(--button-color);
+        /* Cor do texto */
+        border-radius: 50%;
+        padding: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        width: 100px;
+        height: 100px;
+        font-size: 80px;
+    }
+</style>
