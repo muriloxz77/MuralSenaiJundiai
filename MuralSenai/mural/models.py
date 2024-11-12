@@ -45,6 +45,7 @@ class AAluno(models.Model):
     telefone = models.CharField(max_length=100)
     nome_pai = models.CharField(max_length=100, default='Nao informado')
     nome_mae = models.CharField(max_length=100, default='Nao informado')
+    turma = models.ForeignKey(ATurma, on_delete=models.CASCADE)
     observacoes = models.TextField(blank=True, null=True)
 
     def __str__(self):

@@ -80,6 +80,12 @@ def carometro2(request, curso_id):
     context = {'turmas': turmas}
     return render(request, 'carometro2.html', context)
 
+def carometro3(request, turma_id):
+    alunos = AAluno.objects.filter(turma=turma_id) 
+    print("Alunos encontrados:", alunos)
+    context = {'alunoss': alunos}
+    return render(request, 'carometro3.html', context)
+
 def informacoescar(request):
     alunos = AAluno.objects.all()
     context = {'alunos': alunos}
@@ -145,10 +151,11 @@ def adicionaraluno(request):
             var_telefone = form.cleaned_data['telefone']
             var_nome_pai = form.cleaned_data['nome_pai']
             var_nome_mae = form.cleaned_data['nome_mae']
+            var_turma = form.cleaned_data['turma']  # Captura o curso selecionado
             var_observacoes = form.cleaned_data.get('observacoes', '')
 
             try:
-                if AAluno.objects.filter(nome=var_nome).exists():
+                if AAluno.objects.filter(nome=var_nome, turma=var_turma).exists():
                     context["error"] = "Aluno já adicionado na turma!"
                 else:
                     user_aluno = AAluno(
@@ -156,12 +163,13 @@ def adicionaraluno(request):
                         telefone=var_telefone,
                         nome_pai=var_nome_pai,
                         nome_mae=var_nome_mae,
+                        turma=var_turma,
                         observacoes=var_observacoes
                     )
                     user_aluno.save()
                     context["success"] = "Aluno adicionado com sucesso!"
                     form = FormAluno()
-                    return redirect('carometro3')
+                    return redirect('carometro')
             except Exception as e:
                 context["error"] = f"Ocorreu um erro: {str(e)}"
         context["form"] = form

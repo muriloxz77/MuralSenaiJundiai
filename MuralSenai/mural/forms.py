@@ -32,6 +32,13 @@ class FormAluno(forms.Form):
         max_length=100,
         widget=forms.TextInput(attrs={'class': 'form-control'})
     )
+
+    turma = forms.ModelChoiceField(
+        queryset=ATurma.objects.all(),
+        widget=forms.Select(attrs={'class': 'form-control'}),
+        empty_label="Selecione uma Turma"
+    )
+
     observacoes = forms.CharField(
         max_length=1000,
         widget=forms.Textarea(attrs={'class': 'form-control'})  # Use Textarea para observações mais longas
