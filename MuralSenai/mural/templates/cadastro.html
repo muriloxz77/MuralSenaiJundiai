@@ -1,0 +1,165 @@
+
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+SENAI - CADASTRO
+{% endblock %}
+
+{% block body %}
+<div class="container">
+  <div class="form-container">
+    <h2 class="BEntrar" style="font-family: 'Inter', sans-serif;">CADASTRO</h2>
+    <div class="right-side">
+      <form method="POST">
+          {% csrf_token %}
+
+          <div class="form-group" style="display: block;">
+              <div>
+                  <label for="id_nome">Nome Completo:</label>
+              </div>
+              <div>
+                  {{ form.nome}}
+              </div>
+          </div>
+
+          <div class="form-group" style="display: block;">
+              <div>
+                  <label for="id_email">Email:</label>
+              </div>
+              <div>
+                  {{ form.email}}
+              </div>
+          </div>
+
+          <div class="form-group" style="display: block;">
+              <div>
+                  <label for="id_profissao">Profissão:</label>
+              </div>
+              <div>
+                  {{ form.profissao}}
+              </div>
+          </div>
+
+          <div class="form-group" style="display: block;">
+              <div>
+                  <label for="id_criarsenha">Senha:</label>
+              </div>
+              <div>
+                  {{ form.criarsenha}}
+              </div>
+          </div>
+
+          <div>
+              <button type="submit" class="btn btn-primary">Cadastrar</button>
+          </div>
+      </form>
+  </div>
+  </div>
+    <div class="login-link">
+        <a href="http://127.0.0.1:8000/" class="login-link">Já possui uma conta? Faça login</a>
+    </div>
+  </div>
+</div>
+
+
+<style>
+  body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+    align-items: center;
+    min-height: 100vh;
+  }
+
+  .container {
+    display: block;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+    padding-left: 400px;
+    padding-right: 400px;
+  }
+
+  .logo {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+
+  .form-container {
+    background-color: #f00;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 50px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  label {
+    margin-bottom: 5px;
+    display: block;
+    color: white;
+  }
+
+  input[type="text"],
+  input[type="password"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: rgba(255, 255, 255, 0.587);;
+  }
+
+  button {
+    background-color: rgba(255, 255, 255, 0.587);
+    color: #f00;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .login-link {
+    text-align: center;
+    margin-top: 20px;
+  }
+
+  .login-link a {
+    display: flex;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: normal;
+    letter-spacing: 0;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  .login-link a:hover {
+    text-decoration: underline;
+  }
+
+  .BEntrar{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .MuralTitulo {
+    font-family: 'Inria Serif', serif;
+    font-size: 40px;
+    text-align: center; /* Centraliza o texto */
+    display: inline-block; /* Opcional, para garantir que o texto se comporte como um bloco de texto */
+    margin-left: 70px;
+    margin-top: 70px;
+}
+
+</style>
+
+{% endblock %}

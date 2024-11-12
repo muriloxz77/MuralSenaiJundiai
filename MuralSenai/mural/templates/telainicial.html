@@ -1,0 +1,89 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+SENAI - MURAL
+{% endblock %}
+
+{% block body %}
+
+    <div class="container" style="width: 1150px;">
+        <div style="justify-content: center; align-items: center; margin-top: 280px; position: fixed; font-size: 50px;">
+            <a href="http://127.0.0.1:8000/" style="color: rgb(183, 33, 33); ">
+                <i class="bi bi-arrow-left-circle-fill"></i>
+            </a>
+        </div>
+        <div class="buttons" style="justify-content: center; align-items: center; padding-top: 100px; padding-left: 300px;">
+            <div class="button-group">
+                <a href="http://127.0.0.1:8000/muralaviso" class="button-1">
+                    <i class="bi bi-clipboard"></i>
+                </a>
+                <h1 class="button-title">Mural de Avisos</h1>
+            </div>
+            <div class="button-group">
+                <a href="http://127.0.0.1:8000/carometro" class="button-2">
+                    <i class="bi bi-person-bounding-box"></i>
+                </a>
+                <h1 class="button-title">Carômetro</h1>
+            </div>
+        </div>
+    </div>
+
+<style>
+    body {
+        font-family: sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+    }
+
+    .container {
+        display: flex;
+        font-size: 60px;
+        margin-left: 0px;
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        gap: 150px;
+        margin-top: 100px;
+    }
+
+    .button-group {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .button-1:hover, .button-2:hover {
+        background-color: #ddd;
+    }
+
+    .button-1 svg, .button-2 svg {
+        width: 60px;
+        height: 60px;
+    }
+
+    .button-title {
+        font-size: 30px;
+        margin-top: 20px;
+        font-family: 'Inria Serif', serif;
+        font-weight: bold;  
+    }
+
+    
+  h1 {
+    color: var(--h1-color);
+    /* Cor do h1 */
+    transition: color 0.3s ease;
+  }
+</style>
+
+{% endblock %}

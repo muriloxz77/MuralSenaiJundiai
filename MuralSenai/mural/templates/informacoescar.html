@@ -1,0 +1,151 @@
+{% extends 'index.html' %}
+
+{% load static %}
+
+{% block title %}
+SENAI - INFORMAÇÕES CARÔMETRO
+{% endblock %}
+
+{% block body %}
+
+<div class="container" style="padding-top: 100px;">
+
+    <div class="icones-btn">
+        <div class="caixa-btn">
+            <button class="btn">
+                <i class="bi bi-pencil-square"></i>
+            </button>
+            <button class="btn">
+                <i class="bi bi-trash3"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Seção do carômetro com informações do usuário -->
+    <section class="carometro">
+        <h1>Carômetro</h1>
+        <ul>
+            {% for aluno in alunos %}
+                <li>
+                    Nome: {{ aluno.nome }} <br>
+                    Curso: {{ aluno.curso }} <br>
+                    CPF: {{ aluno.cpf }} <br>
+                    Observações: {{ aluno.observacoes }} <br>
+                </li>
+            {% empty %}
+                <li>Não há alunos cadastrados.</li>
+            {% endfor %}
+        </ul>
+        <div class="extra-info">
+            <p><strong>Informações:</strong></p>
+            <!-- Adicionar informações adicionais aqui -->
+        </div>
+    </section>
+</div>
+
+<style>
+    /* Definindo o corpo da página */
+    body {
+        background-color: black;
+        color: white;
+        font-family: sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Estilizando o cabeçalho */
+    .header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 50px;
+        align-items: center;
+    }
+
+    .logo-img {
+        width: 150px;
+    }
+
+    .menu {
+        display: flex;
+        align-items: center;
+    }
+
+    .menu-link {
+        color: white;
+        text-decoration: none;
+        margin-right: 10px;
+        font-size: 18px;
+    }
+
+    .icon-user {
+        width: 30px;
+        margin-left: 15px;
+    }
+
+    /* Seção principal do Carômetro */
+    .carometro {
+        margin-top: 30px;
+        text-align: center;
+    }
+
+    .carometro h1 {
+        font-size: 2.5em;
+        font-weight: bold;
+        margin-bottom: 40px;
+    }
+
+    .info-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .user-icon {
+        margin-right: 50px;
+    }
+
+    .user-img {
+        width: 150px;
+        border-radius: 50%;
+        border: 5px solid white;
+    }
+
+    .info-text p {
+        font-size: 1.2em;
+        margin: 10px 0;
+        text-align: left;
+        margin-right: 20px;
+    }
+
+    /* Informações extras */
+    .extra-info {
+        margin-top: 30px;
+        font-size: 1.2em;
+        margin-right: 80px;
+    }
+
+    .btn {
+        border: 1px solid var(--button-background);
+        border-radius: 15px; 
+        font-size: 20px;
+        background-color: var(--button-background);
+    }
+
+    .caixa-btn {
+        border: 1px solid var(--button-background);
+        border-radius: 15px; 
+        background-color: var(--button-background);
+        width: 150px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icones-btn {
+        display: flex;
+        justify-content: right;
+        padding-right: 25px;
+    }
+</style>
+
+{% endblock %}

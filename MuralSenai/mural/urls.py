@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from . import views
 
 urlpatterns = [
@@ -7,7 +7,7 @@ urlpatterns = [
     path('cadastro/', views.cadastro, name='cadastro/'),
     path('muralaviso', views.muralaviso, name='muralaviso'),
     path('carometro', views.carometro, name='carometro'),
-    path('carometro2', views.carometro2, name='carometro2'),
+    path('carometro2/<int:curso_id>/', views.carometro2, name='carometro2'),
     path('carometro3', views.carometro3, name='carometro3'),
     path('informacoescar', views.informacoescar, name='informacoescar'),
     path('adicionarcurso', views.adicionarcurso, name='adicionarcurso'),
