@@ -8,12 +8,12 @@ urlpatterns = [
     path('muralaviso', views.muralaviso, name='muralaviso'),
     path('carometro', views.carometro, name='carometro'),
     path('carometro2/<int:curso_id>/', views.carometro2, name='carometro2'),
-    path('carometro3', views.carometro3, name='carometro3'),
+    path('carometro3/<int:turma_id>/', views.carometro3, name='carometro3'),
     path('informacoescar', views.informacoescar, name='informacoescar'),
     path('adicionarcurso', views.adicionarcurso, name='adicionarcurso'),
     path('adicionarturma', views.adicionarturma, name='adicionarturma'),
     path('adicionaraluno', views.adicionaraluno, name='adicionaraluno'),
     path('editarcurso', views.editarcurso, name='editarcurso'),
     path('editaraluno', views.editaraluno, name='editaraluno'),
-    
+    path('api/aviso/', views.aviso_api, name='aviso_api'),
 ]   

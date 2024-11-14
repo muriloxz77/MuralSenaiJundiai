@@ -1,10 +1,13 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect,
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import FormAluno, FormCadastro, FormLogin, FormCurso, FormTurma
 from .models import AAluno, Cadastro, ACurso, ATurma, Login
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
+from .models import Aviso
 
 
 def homepage(request):
@@ -83,7 +86,7 @@ def carometro2(request, curso_id):
 def carometro3(request, turma_id):
     alunos = AAluno.objects.filter(turma=turma_id) 
     print("Alunos encontrados:", alunos)
-    context = {'alunoss': alunos}
+    context = {'alunos': alunos}
     return render(request, 'carometro3.html', context)
 
 def informacoescar(request):
@@ -193,3 +196,16 @@ def editaraluno(request, aluno_id):
     else:
         form = FormAluno(instance=aluno)
     return render(request, 'editaraluno.html', {'form': form, 'aluno': aluno})
+
+
+
+@api_view(['GET'])
+def aviso_api(request):
+    try:
+        aviso = Aviso.objects.latest('data_criacao')
+        return Response({'mensagem': aviso.mensagem})
+    except Aviso.DoesNotExist:
+        return Response({'mensagem': 'Nenhum aviso disponível.'})
+
+def mural_de_avisos(request):
+    return render(request, 'mural_de_avisos.html')

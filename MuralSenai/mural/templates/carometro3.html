@@ -27,16 +27,16 @@ SENAI - CARÔMETRO
 
   <div class="buttons" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
     {% if alunos %}
-        {% for turma in turmas %}
+        {% for aluno in alunos %}
             <div class="button-group">
-                <a href="{url 'carometro'}" class="button-1">
+                <a href="{url 'informacoescar'}" class="button-1">
                     <i class="bi bi-inboxes"></i>
                 </a>
-                <h1 class="button-title">{{ turma.turma }} - {{ turma.periodo }} ({{ turma.curso }})</h1>
+                <h1 class="button-title">{{ aluno.aluno }} - {{ aluno.nome }}</h1>
             </div>
         {% endfor %}
     {% else %}
-        <p>Nenhuma turma encontrada.</p>
+        <p>Nenhum aluno encontrado.</p>
     {% endif %}
 </div>
 

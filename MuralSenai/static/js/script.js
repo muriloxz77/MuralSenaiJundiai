@@ -12,3 +12,19 @@ themeToggleBtn.addEventListener('click', () => {
         icon.textContent = 'contrast'; // Ícone de "lua" para tema escuro
     }
 });
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    const apiUrl = "/api/aviso/";
+    const noticeMessage = document.querySelector(".notice-message");
+
+    fetch(apiUrl)
+        .then(response => response.json())
+        .then(data => {
+            noticeMessage.textContent = data.mensagem || "Nenhuma mensagem disponível";
+        })
+        .catch(error => {
+            console.error("Erro ao carregar o aviso:", error);
+            noticeMessage.textContent = "Erro ao carregar a mensagem";
+        });
+});

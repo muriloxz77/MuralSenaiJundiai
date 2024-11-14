@@ -4,7 +4,7 @@
 
 {% block title %}
 SENAI - CARÔMETRO
-{% endblock %}
+{% endblock %} 
 
 {% block body %}
 <div class="container" style="padding-top: 80px; display: block;">
@@ -29,7 +29,7 @@ SENAI - CARÔMETRO
     {% if turmas %}
         {% for turma in turmas %}
             <div class="button-group">
-                <a href="{url 'carometro3'}" class="button-1">
+                <a href="{% url 'carometro3' turma_id=turma.id %}" class="button-1">
                     <i class="bi bi-inboxes"></i>
                 </a>
                 <h1 class="button-title">{{ turma.turma }} - {{ turma.periodo }} ({{ turma.curso }})</h1>
