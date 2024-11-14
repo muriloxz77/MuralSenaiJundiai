@@ -12,9 +12,11 @@ SENAI - ADICIONAR CURSO
         <h1>Adicionar Curso</h1>
         <div class="form-container">
             <div class="left-side">
-                <i class="bi bi-person-circle" style="font-size: 150px; padding-left: 50px; "></i>
+                <i id="icon-add" style="font-size: 150px; padding-left: 50px; "></i>
             </div>
-
+            <input id="form-picker"class="form-control iconpicker" placeholder="Icon Picker" aria-label="Icone Picker"
+                    aria-describedby="basic-addon1">
+                    <button id="btn-icon-add">Adicionar Icone</button>
             <div class="right-side">
                 <form method="POST">
                     {% csrf_token %}

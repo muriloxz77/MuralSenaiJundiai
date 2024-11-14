@@ -21,6 +21,9 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Inria+Serif:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap"
         rel="stylesheet">
+        <link rel="stylesheet" href="../static/dist/css/bootstrapicons-iconpicker.min.css">
+        <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
+
     {% endblock %}
 </head>
 
@@ -36,11 +39,47 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="../static/js/script.js"></script>
+    <script src="../static/dist/js/bootstrapicon-iconpicker.min.js"></script>
+    <script>
+        $('.iconpicker').iconpicker({
+
+            title: 'My Icon Picker',
+            selected: false,
+            defaultValue: false,
+            placement: "bottom",
+            collision: "none",
+            animation: true,
+            hideOnSelect: true,
+            showFooter: true,
+            searchInFooter: false,
+            mustAccept: false,
+            selectedCustomClass: "bg-primary",
+            fullClassFormatter: function (e) {
+                return e;
+            },
+            input: "input,.iconpicker-input",
+            inputSearch: false,
+            container: false,
+            component: ".input-group-addon,.iconpicker-component",
+            templates: {
+                popover: '<div class="iconpicker-popover popover" role="tooltip"><div class="arrow"></div>' + '<div class="popover-title"></div><div class="popover-content"></div></div>',
+                footer: '<div class="popover-footer"></div>',
+                buttons: '<button class="iconpicker-btn iconpicker-btn-cancel btn btn-default btn-sm">Cancel</button>' + ' <button class="iconpicker-btn iconpicker-btn-accept btn btn-primary btn-sm">Accept</button>',
+                search: '<input type="search" class="form-control iconpicker-search" placeholder="Type to filter" />',
+                iconpicker: '<div class="iconpicker"><div class="iconpicker-items"></div></div>',
+                iconpickerItem: '<a role="button" href="javascript:;" class="iconpicker-item"><i></i></a>'
+            }
+        });
+    </script>
+    <script>
+
+        $('#btn-icon-add').on('click', function(){
+        let iconClass = $("#form-picker").val()
+        $('#icon-add').addClass(iconClass)
+})
+    </script>
 </body>
-
 </html>
-
-
 <style>
     /* Variáveis de tema */
     :root {

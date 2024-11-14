@@ -29,10 +29,10 @@ SENAI - CARÔMETRO
     {% if alunos %}
         {% for aluno in alunos %}
             <div class="button-group">
-                <a href="{url 'informacoescar'}" class="button-1">
+                <a href="{% url 'informacoescar' aluno_id=aluno.id %}" class="button-1">
                     <i class="bi bi-inboxes"></i>
                 </a>
-                <h1 class="button-title">{{ aluno.aluno }} - {{ aluno.nome }}</h1>
+                <h1 class="button-title">{{ aluno.aluno }} {{ aluno.nome }}</h1>
             </div>
         {% endfor %}
     {% else %}

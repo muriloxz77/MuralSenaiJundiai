@@ -28,8 +28,10 @@ SENAI - INFORMAÇÕES CARÔMETRO
             {% for aluno in alunos %}
                 <li>
                     Nome: {{ aluno.nome }} <br>
-                    Curso: {{ aluno.curso }} <br>
-                    CPF: {{ aluno.cpf }} <br>
+                    Telefone: {{ aluno.telefone }} <br>
+                    Pai: {{ aluno.nome_pai }} <br>
+                    Mãe: {{ aluno.nome_mae }} <br>
+                    Turma: {{ aluno.turma }} <br>
                     Observações: {{ aluno.observacoes }} <br>
                 </li>
             {% empty %}
@@ -44,108 +46,76 @@ SENAI - INFORMAÇÕES CARÔMETRO
 </div>
 
 <style>
-    /* Definindo o corpo da página */
-    body {
-        background-color: black;
-        color: white;
-        font-family: sans-serif;
-        margin: 0;
-        padding: 0;
-    }
+  body {
+    background-color: black;
+    color: white;
+    font-family: sans-serif;
+    margin: 0;
+    align-items: center;
+  }
 
-    /* Estilizando o cabeçalho */
-    .header {
-        display: flex;
-        justify-content: space-between;
-        padding: 20px 50px;
-        align-items: center;
-    }
+  .logo {
+    font-size: 3em;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
 
-    .logo-img {
-        width: 150px;
-    }
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0 auto;
+  }
 
-    .menu {
-        display: flex;
-        align-items: center;
-    }
+  .buttons {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
+  }
 
-    .menu-link {
-        color: white;
-        text-decoration: none;
-        margin-right: 10px;
-        font-size: 18px;
-    }
+  .button-group {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-basis: calc(50% - 30px);
+    margin-bottom: 15px;
+  }
 
-    .icon-user {
-        width: 30px;
-        margin-left: 15px;
-    }
+  .button-1:hover,
+  .button-2:hover {
+    background-color: #ddd;
+  }
 
-    /* Seção principal do Carômetro */
-    .carometro {
-        margin-top: 30px;
-        text-align: center;
-    }
+  .button-1 svg,
+  .button-2 svg {
+    width: 40px;
+    height: 40px;
+  }
 
-    .carometro h1 {
-        font-size: 2.5em;
-        font-weight: bold;
-        margin-bottom: 40px;
-    }
+  .button-title {
+    font-size: 20px;
+    margin-top: 20px;
+    font-family: 'Inter, serif', sans-serif;
+    font-weight: 300;
+  }
 
-    .info-container {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .user-icon {
-        margin-right: 50px;
-    }
-
-    .user-img {
-        width: 150px;
-        border-radius: 50%;
-        border: 5px solid white;
-    }
-
-    .info-text p {
-        font-size: 1.2em;
-        margin: 10px 0;
-        text-align: left;
-        margin-right: 20px;
-    }
-
-    /* Informações extras */
-    .extra-info {
-        margin-top: 30px;
-        font-size: 1.2em;
-        margin-right: 80px;
-    }
-
-    .btn {
-        border: 1px solid var(--button-background);
-        border-radius: 15px; 
-        font-size: 20px;
-        background-color: var(--button-background);
-    }
-
-    .caixa-btn {
-        border: 1px solid var(--button-background);
-        border-radius: 15px; 
-        background-color: var(--button-background);
-        width: 150px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .icones-btn {
-        display: flex;
-        justify-content: right;
-        padding-right: 25px;
-    }
+  h1 {
+    color: var(--h1-color);
+    transition: color 0.3s ease;
+  }
 </style>
+
+{% block extra_js %}
+<!-- Linkando os arquivos CSS e JS estáticos -->
+<link rel="stylesheet" href="{% static 'css/navStyle.css' %}">
+<link rel="stylesheet" href="{% static 'dist/css/bootstrapicons-iconpicker.min.css' %}">
+<script src="{% static 'js/script.js' %}"></script>
+<script src="{% static 'dist/js/bootstrapicon-iconpicker.min.js' %}"></script>
+{% endblock %}
 
 {% endblock %}

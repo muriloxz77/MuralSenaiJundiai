@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, get_object_or_404, redirect,
+from django.shortcuts import render, HttpResponse, get_object_or_404, redirect
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.models import User
@@ -68,10 +68,6 @@ def cadastro(request):
     return render(request, 'cadastro.html', context)
 
 
-def muralaviso(request):
-    return render(request, 'muralaviso.html')
-
-
 def carometro(request):
     cursos = ACurso.objects.all()
     context = {'cursos': cursos}
@@ -89,8 +85,8 @@ def carometro3(request, turma_id):
     context = {'alunos': alunos}
     return render(request, 'carometro3.html', context)
 
-def informacoescar(request):
-    alunos = AAluno.objects.all()
+def informacoescar(request, aluno_id):
+    alunos = AAluno.objects.filter(id=aluno_id)
     context = {'alunos': alunos}
     return render(request, 'informacoescar.html', context)
 
@@ -144,6 +140,7 @@ def adicionarturma(request):
         context["form"] = form
 
     return render(request, 'adicionarturma.html', context)
+
 
 def adicionaraluno(request):
     context = {}
@@ -199,13 +196,39 @@ def editaraluno(request, aluno_id):
 
 
 
-@api_view(['GET'])
-def aviso_api(request):
+from django.shortcuts import render, redirect
+from .models import Aviso
+
+def muralaviso(request):
+    if request.method == 'POST':
+        # Captura a mensagem do formulário e cria um novo aviso
+        mensagem = request.POST.get('mensagem')
+        if mensagem:
+            Aviso.objects.create(mensagem=mensagem)
+            return redirect('muralaviso')  # Redireciona para limpar o formulário
+
+    # Busca o aviso mais recente para exibição
     try:
         aviso = Aviso.objects.latest('data_criacao')
-        return Response({'mensagem': aviso.mensagem})
     except Aviso.DoesNotExist:
-        return Response({'mensagem': 'Nenhum aviso disponível.'})
+        aviso = None  # Caso não haja aviso, define como None
 
-def mural_de_avisos(request):
-    return render(request, 'mural_de_avisos.html')
+    # Renderiza o template, passando o aviso mais recente
+    return render(request, 'muralaviso.html', {'aviso': aviso})
+
+# meu_app/views.py
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from .models import Aviso
+
+@csrf_exempt  # Permite requisições AJAX sem CSRF (apenas para teste; idealmente, configure CSRF adequadamente)
+def criar_aviso_ajax(request):
+    if request.method == 'POST':
+        mensagem = request.POST.get('mensagem', '')
+        if mensagem:
+            # Salva o aviso no banco de dados
+            aviso = Aviso.objects.create(mensagem=mensagem)
+            return JsonResponse({'status': 'sucesso', 'mensagem': aviso.mensagem}, status=201)
+        else:
+            return JsonResponse({'status': 'erro', 'mensagem': 'Mensagem vazia'}, status=400)
+    return JsonResponse({'status': 'erro', 'mensagem': 'Método não permitido'}, status=405)

@@ -8,45 +8,60 @@ SENAI - AVISOS
 
 {% block body %}
 
-<div class="container" style="width: 1150px;">
-  <div style="justify-content: center; align-items: center; margin-top: 580px; position: fixed; font-size: 50px;">
-    <a href="http://127.0.0.1:8000/inicio" style="color: rgb(183, 33, 33); ">
-      <i class="bi bi-arrow-left-circle-fill"></i>
-    </a>
+<div class="container">
+  <h1>Mural de Avisos</h1>
+
+  <!-- Exibe o aviso mais recente, se existir -->
+  <div class="notice">
+      {% if aviso %}
+          <p class="notice-message">{{ aviso.mensagem }}</p>
+      {% else %}
+          <p class="notice-message">Nenhum aviso disponível.</p>
+      {% endif %}
   </div>
 
-  <h1>Mural de Avisos</h1>
-  <div class="notice">
-    <p class="notice-message">Carregando mensagem...</p>
+  <!-- Botão para abrir a modal de criação de aviso -->
+  <button id="openModalBtn">Criar Aviso</button>
+
+  <!-- Estrutura da modal -->
+  <div id="modal" class="modal">
+      <div class="modal-content">
+          <span id="closeModalBtn" class="close">&times;</span>
+          <h2>Criar um Novo Aviso</h2>
+          <form method="POST">
+              {% csrf_token %}
+              <textarea name="mensagem" rows="4" placeholder="Escreva um novo aviso aqui..." required></textarea>
+              <button type="submit">Publicar Aviso</button>
+          </form>
+      </div>
   </div>
 </div>
 <script src="script.js"></script>
 
 <style>
-  body {
-    background-color: black;
-    color: white;
-    font-family: sans-serif;
-    margin: 0;
-    align-items: center;
-    min-height: 100vh;
-  }
 
-
-  .container {
+body {
     display: flex;
+    justify-content: center;
     align-items: center;
-    margin-left: 50px;
-    justify-content: space-between;
-  }
+    height: 100vh;
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #1e1e1e;
+    color: #fff;
+}
 
-  .logo {
-    font-size: 3em;
-    font-weight: bold;
-    margin-bottom: 20px;
-  }
+.container {
+    text-align: center;
+    width: 90%;
+    max-width: 600px;
+    padding: 20px;
+    border: 2px solid #ff4747;
+    border-radius: 10px;
+    background-color: #333;
+}
 
-  h1 {
+h1 {
     font-size: 2em;
     margin-bottom: 20px;
     color: #ff4747;
@@ -56,6 +71,86 @@ SENAI - AVISOS
     font-size: 1.2em;
     color: #f9f9f9;
 }
+
+
+#openModalBtn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #ff4747;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#openModalBtn:hover {
+    background-color: #ff6666;
+}
+
+/* Estilos da modal */
+.modal {
+    display: none; /* Oculta a modal por padrão */
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+}
+
+.modal-content {
+    background-color: #333;
+    margin: 10% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px;
+    color: #fff;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+    color: #fff;
+    text-decoration: none;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1em;
+    border-radius: 5px;
+    border: none;
+    resize: none;
+    margin-bottom: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    background-color: #ff4747;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button[type="submit"]:hover {
+    background-color: #ff6666;
+}
+
+
 </style>
 
 {% endblock %}
